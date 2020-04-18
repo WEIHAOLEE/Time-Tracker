@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.sky.timetracker.Constants;
 import com.sky.timetracker.IContract;
 import com.sky.timetracker.Model.ModelImpl;
 import com.sky.timetracker.Presenter.ITimer;
@@ -98,6 +100,8 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                                 }
                             })
                             .show();
+                    Constants.TIMER_STATE = "WORKING";
+
                     break;
             }
         }
@@ -124,6 +128,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
     @Override
     public void showDialog(int time, int date) {
         // 在这里设置弹窗不知道为什么 总是出不来
+        // TODO：在其他fragment上不会显示 其实这个应该放到activity下
         final EditText editText1 = new EditText(view.getContext());
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle("请输入倒计时长")
@@ -142,5 +147,6 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                     }
                 })
                 .show();
+        Constants.TIMER_STATE = "NO_WORK";
     }
 }

@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sky.timetracker.View.Fragment.DataPageFragment;
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return true;
                 case R.id.navigation_data:
+                    if (Constants.TIMER_STATE.equals("WORKING")){
+                        Toast.makeText(getApplicationContext(),"学习不要分心哦～",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                     getSupportActionBar().setTitle(R.string.app_data);
                     if (mDataPageFragment == null){
                         mDataPageFragment = new DataPageFragment();
@@ -83,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return true;
                 case R.id.navigation_user:
+                    if (Constants.TIMER_STATE.equals("WORKING")){
+                        Toast.makeText(getApplicationContext(),"学习不要分心哦～",Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                     getSupportActionBar().setTitle(R.string.app_user);
                     if (mUserPageFragment == null){
                         mUserPageFragment = new UserPageFragment();
