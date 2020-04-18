@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">时间追踪器</string>
+    <string name="app_start">开始</string>
+    <string name="app_data">数据统计</string>
+    <string name="app_user">我</string>
+    <string name="timer_timing">开始计时</string>
+    <string name="timer_count_down">开始倒计时</string>
+</resources>
