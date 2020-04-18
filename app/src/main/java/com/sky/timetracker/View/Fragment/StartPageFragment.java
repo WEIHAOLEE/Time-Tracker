@@ -65,7 +65,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                 case R.id.bt_timing:
 
                     if (!isTimming){
-                        iTimer.startTiming(mTimer);
+                        iTimer.startTiming(mTimer,view.getContext());
                         mBtTiming.setText("完成");
                         isTimming = true;
                         mBtCountDown.setVisibility(View.GONE);
@@ -147,5 +147,13 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                 })
                 .show();
         Constants.TIMER_STATE = "NO_WORK";
+    }
+
+    /**
+     * 让p层弹吐司
+     */
+    @Override
+    public void showToast(String content) {
+        Toast.makeText(view.getContext(),content,Toast.LENGTH_SHORT).show();
     }
 }

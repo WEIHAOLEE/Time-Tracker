@@ -8,7 +8,7 @@ public interface ITimer {
     /**
      * 开始计时 正向
      */
-    void startTiming(Chronometer Timer);
+    void startTiming(Chronometer Timer,Context context);
 
     /**
      * 倒计时

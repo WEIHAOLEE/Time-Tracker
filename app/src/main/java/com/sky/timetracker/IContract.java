@@ -50,7 +50,7 @@ public interface IContract {
             //  展示弹窗 返回传给p层任务名字
             void showDialog(int time, int date);
 
-
+            void showToast(String content);
 
 //            void hideDialog();
         }

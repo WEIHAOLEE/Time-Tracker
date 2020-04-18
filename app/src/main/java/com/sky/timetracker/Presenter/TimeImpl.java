@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.icu.text.SimpleDateFormat;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -16,16 +17,21 @@ import com.sky.timetracker.Model.DAO.Dao;
 import com.sky.timetracker.Model.DAO.DaoImpl;
 import com.sky.timetracker.Model.ModelImpl;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class TimeImpl implements ITimer, IContract.IPresenterTimer {
 
 
+    // TODO: 改变数据结构 按秒计时 按分钟计时 数据更改类型
     private final IContract.IView.IViewStartPage view;
     private final IContract.IModel model;
     private Context mContext;
     private int mCountDownTime;
     private int mIntDate;
+    private long mTimingStartTime;
+    private long mTimingStopTime;
+    private int mTimingTime;
 
     public TimeImpl(IContract.IModel model, IContract.IView.IViewStartPage view) {
         this.model = model;
@@ -34,8 +40,10 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
 
 
     @Override
-    public void startTiming(Chronometer Timer) {
-        Timer.setBase(SystemClock.elapsedRealtime());
+    public void startTiming(Chronometer Timer,Context context) {
+        mTimingStartTime = SystemClock.elapsedRealtime();
+        mContext = context;
+        Timer.setBase(mTimingStartTime);
 //        mTimer.setCountDown(true); 代表是倒计时还是正常计时, false就是正常计时, true计时倒计时.
 //        Timer.setFormat("计时：%s");
         Timer.start();
@@ -70,6 +78,7 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
                 Date date = new Date();
                 mIntDate = Integer.parseInt(dateFormat.format(date));
                 view.showDialog(mCountDownTime,mIntDate);
+
                 //结构不够完美 其实 监听事件应该放到view层
                 // 以上为重构内容 需要封装方法
             }
@@ -78,12 +87,34 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
 
     @Override
     public void finish(Chronometer Timer) {
+        mTimingStopTime = SystemClock.elapsedRealtime();
         Timer.stop();
+        Double l = (double)(mTimingStopTime - mTimingStartTime);
+        Log.d("测试", String.valueOf(l));
+        if (l < 1){
+            view.showToast("您的学习时间小于一分钟，无法记录");
+        }else if (l >= 1){
+            // 四舍五入
+            mTimingTime = Integer.parseInt(new DecimalFormat("0").format(l));
+            // TODO：这部分其实也需要模块化
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+            Date date = new Date();
+            mIntDate = Integer.parseInt(dateFormat.format(date));
+            //
+            view.showDialog(mTimingTime,mIntDate);
+
+        }
     }
 
     @Override
     public void setData(String missionName) {
         // 传给m层
-        model.insertData(mContext,missionName,mCountDownTime,mIntDate);
+        if (mCountDownTime != 0){
+            model.insertData(mContext,missionName,mCountDownTime,mIntDate);
+            mCountDownTime = 0;
+        }else if (mTimingTime != 0){
+            model.insertData(mContext,missionName,mTimingTime,mIntDate);
+            mTimingTime = 0;
+        }
     }
 }
