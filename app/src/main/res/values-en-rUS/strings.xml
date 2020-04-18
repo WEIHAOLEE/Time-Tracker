@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Time Tracker</string>
+    <string name="app_start">Start</string>
+    <string name="app_data">Data statistics</string>
+    <string name="app_user">Me</string>
+    <string name="timer_timing">Start Timing</string>
+    <string name="timer_count_down">Start Count Down</string>
+</resources>
