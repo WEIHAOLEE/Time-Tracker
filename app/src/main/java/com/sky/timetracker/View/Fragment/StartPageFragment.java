@@ -127,8 +127,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
      */
     @Override
     public void showDialog(int time, int date) {
-        // 在这里设置弹窗不知道为什么 总是出不来
-        // TODO：在其他fragment上不会显示 其实这个应该放到activity下
+        // 在其他fragment上不会显示 其实这个应该放到activity下
         final EditText editText1 = new EditText(view.getContext());
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setTitle("请输入倒计时长")

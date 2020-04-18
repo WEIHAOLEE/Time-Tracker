@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.StartPageFragment"
     android:orientation="vertical">
 
     <Chronometer
@@ -22,17 +21,23 @@
 
         <Button
             android:id="@+id/bt_timing"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_height="50dp"
-            android:text="@string/timer_timing"/>
+            android:drawableTop="@drawable/ic_start_timer_24dp"
+            android:background="#00000000"
+            android:text="@string/timer_timing"
+            android:textSize="12sp"/>
 
 
         <Button
             android:id="@+id/bt_count_down"
             android:layout_toEndOf="@id/bt_timing"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_height="50dp"
-            android:text="@string/timer_count_down"/>
+            android:drawableTop="@drawable/ic_countdown_24dp"
+            android:background="#00000000"
+            android:text="@string/timer_count_down"
+            android:textSize="12sp"/>
     </RelativeLayout>
 
 </RelativeLayout>
