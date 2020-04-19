@@ -41,7 +41,6 @@ public class DaoImpl implements Dao {
 
     @Override
     public void delete(int id) {
-        // TODO: 完成删除记录的功能
         SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
         String clause = "record_id = " + id;
         db.delete(Constants.TABLE_NAME_RECORD,clause,null);

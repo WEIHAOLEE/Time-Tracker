@@ -69,11 +69,13 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                         mBtTiming.setText("完成");
                         isTimming = true;
                         mBtCountDown.setVisibility(View.GONE);
+                        Constants.TIMER_STATE = "WORKING";
                     }else if (isTimming){
                         mBtTiming.setText("开始计时");
                         mBtCountDown.setVisibility(View.VISIBLE);
                         iTimer.finish(mTimer);
                         isTimming = false;
+                        Constants.TIMER_STATE = "NO_WORK";
                     }
                     break;
                 case R.id.bt_count_down:
