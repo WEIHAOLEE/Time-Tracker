@@ -91,9 +91,9 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
         Timer.stop();
         Double l = (double)(mTimingStopTime - mTimingStartTime);
         Log.d("测试", String.valueOf(l));
-        if (l < 1){
+        if (l < 60000){
             view.showToast("您的学习时间小于一分钟，无法记录");
-        }else if (l >= 1){
+        }else if (l >= 60000){
             // 四舍五入
             mTimingTime = Integer.parseInt(new DecimalFormat("0").format(l));
             // TODO：这部分其实也需要模块化

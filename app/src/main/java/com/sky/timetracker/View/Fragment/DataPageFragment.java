@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sky.timetracker.IContract;
-import com.sky.timetracker.Model.DAO.Dao;
-import com.sky.timetracker.Model.DAO.DaoImpl;
 import com.sky.timetracker.Model.ModelImpl;
 import com.sky.timetracker.Presenter.PresenterImpl;
 import com.sky.timetracker.R;
