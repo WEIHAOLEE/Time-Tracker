@@ -89,6 +89,8 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
     public void finish(Chronometer Timer) {
         mTimingStopTime = SystemClock.elapsedRealtime();
         Timer.stop();
+        // 归零
+        Timer.setBase(SystemClock.elapsedRealtime());
         Double l = (double)(mTimingStopTime - mTimingStartTime);
         Log.d("测试", String.valueOf(l));
         if (l < 60000){
