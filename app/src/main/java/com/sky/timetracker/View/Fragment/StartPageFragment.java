@@ -132,7 +132,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
         // 在其他fragment上不会显示 其实这个应该放到activity下
         final EditText editText1 = new EditText(view.getContext());
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle("请输入倒计时长")
+        builder.setTitle("请输入任务名称")
                 .setView(editText1)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener(){
                     @Override
