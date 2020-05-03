@@ -5,11 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".View.LoginActivity">
 
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"/>
+
     <LinearLayout
         android:id="@+id/ll_1"
+        android:layout_below="@id/iv_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:padding="10dp">
@@ -62,7 +71,7 @@
     <Button
         android:id="@+id/bt_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="42dp"
         android:layout_below="@id/ll_2"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -70,6 +79,16 @@
         android:text="登录"
         android:textSize="20sp"
         android:textColor="#000000"
+        android:background="@drawable/login_button_style"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bt_login"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:text="注册"
+        android:textSize="15sp"/>
 
 </RelativeLayout>
