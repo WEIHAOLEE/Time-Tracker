@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 while((line = bufferedReader.readLine()) != null) {
                     Log.d("测试",line);
                     Gson gson = new Gson();
+                    // obtainMessage 效率高一些 不需要new
                     Message message = mHandler.obtainMessage();
                     message.what = WHAT_LOADER_RESULT;
                     message.obj = gson.fromJson(line, OnlineUser.class);
