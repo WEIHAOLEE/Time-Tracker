@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
 
 
-    <ImageView
-        android:id="@+id/iv_icon"
+    <!--解决状态栏与toolbar重叠问题-->
+    <View
+        android:id="@+id/view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFFF" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_1"
+        android:layout_below="@+id/view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFFFFF"
+        app:title="Register"
+        app:titleTextColor="#000000"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+    <!--TODO: 写他妈的自定义控件 来实现圆形图片展示-->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user_photo"
+        android:layout_below="@id/tb_1"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:background="@mipmap/ic_launcher" />
+        android:src="@drawable/profile_photo"/>
 
 
     <EditText
         android:id="@+id/et_id"
         android:layout_marginTop="40dp"
-        android:layout_below="@id/iv_icon"
+        android:layout_below="@id/iv_user_photo"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="50dp"
@@ -40,46 +64,31 @@
         android:background="@drawable/boarding_reservation_round"
         android:inputType="numberPassword" />
 
-
-    <Button
-        android:id="@+id/bt_login"
+    <EditText
+        android:id="@+id/et_pwd_confirm"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/et_pwd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/et_pwd"
-        android:layout_marginTop="60dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/boarding_book_round"
-        android:text="Login"
-        android:textColor="#FFFFFF"
-        android:layout_centerHorizontal="true"/>
-
+        android:hint="Confirm Password"
+        android:gravity="center"
+        android:background="@drawable/boarding_reservation_round"
+        android:inputType="numberPassword" />
 
     <Button
         android:id="@+id/bt_register"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/bt_login"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/et_pwd_confirm"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/boarding_reservation_round"
+        android:background="@drawable/boarding_book_round"
         android:text="Register"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"/>
-
-
-    <TextView
-        android:id="@+id/tv_fg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bt_register"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:text="Forget Password"
-        android:layout_centerHorizontal="true"
-        android:textColor="#585858"
-        android:textSize="14sp"/>
 
 
 </RelativeLayout>

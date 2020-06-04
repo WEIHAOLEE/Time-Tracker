@@ -7,4 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="timer_timing">Start Timing</string>
     <string name="timer_count_down">Start Count Down</string>
+    <string name="username">UserName</string>
+    <string name="userid">UserID</string>
+    <string name="user_info">User Information</string>
 </resources>

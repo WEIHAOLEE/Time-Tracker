@@ -38,6 +38,14 @@ public interface IContract {
 
     }
 
+    interface IPresenterLogin{
+        void login(String uid, String uPwd);
+    }
+
+    interface IPresenterReg{
+        void register(String uid, String uPwd, String uImage);
+    }
+
     interface IView{
         // 从p层返回dataBeanList
         void dataBeanListReturn(List<DataBean> dataBeanList);
@@ -54,5 +62,13 @@ public interface IContract {
 
 //            void hideDialog();
         }
+    }
+
+    interface IViewReg{
+        void finishActivity();
+    }
+
+    interface IViewLogin{
+        void saveUserData(String response);
     }
 }

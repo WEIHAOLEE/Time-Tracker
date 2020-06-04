@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setDefaultFragment();
     }
 
-
+    // 设置默认Fragment
     private void setDefaultFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             hideFragment(transaction);
             switch (item.getItemId()){
                 case R.id.navigation_start:
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle(R.string.app_start);
                     if (mStartPageFragment == null){
                         mStartPageFragment = new StartPageFragment();
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"学习不要分心哦～",Toast.LENGTH_SHORT).show();
                         break;
                     }
+                    getSupportActionBar().show();
                     getSupportActionBar().setTitle(R.string.app_data);
                     if (mDataPageFragment == null){
                         mDataPageFragment = new DataPageFragment();
@@ -92,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"学习不要分心哦～",Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    getSupportActionBar().setTitle(R.string.app_user);
+                    getSupportActionBar().hide();
+//                    getSupportActionBar().setTitle(R.string.app_user);
                     if (mUserPageFragment == null){
                         mUserPageFragment = new UserPageFragment();
                         transaction.add(R.id.fl_content,mUserPageFragment);

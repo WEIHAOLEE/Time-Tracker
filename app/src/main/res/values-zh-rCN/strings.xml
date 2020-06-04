@@ -6,4 +6,7 @@
     <string name="app_user">我</string>
     <string name="timer_timing">开始计时</string>
     <string name="timer_count_down">开始倒计时</string>
+    <string name="username">用户名</string>
+    <string name="userid">用户ID</string>
+    <string name="user_info">用户信息</string>
 </resources>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OpenSourceActivity">
+
+    <View
+        android:id="@+id/view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFFF" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_1"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FFFFFF"
+        app:title="Open Source"
+        app:titleTextColor="#000000"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ImmersionBar"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_below="@id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.0.0"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="gyf-devr"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+
+                <TextView
+                    android:id="@+id/tv_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy permission"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_below="@id/tv_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.3.0"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google samples"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Banner"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_below="@id/tv_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.0.8"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Youth5201314"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gson"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.8.6"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Glide"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.11.0"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bumptech"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="uCrop"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.2.5"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yalantis"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="okHttp"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.7.2"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Square"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CircleImageView"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.1.0"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hdodenhof"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

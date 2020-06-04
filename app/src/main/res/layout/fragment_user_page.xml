@@ -1,22 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:orientation="vertical"
+    android:background="@color/background"
+    >
 
-    <TextView
-        android:id="@+id/tv_login_name"
+    <View
+        android:id="@+id/view_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFFF" />
+
+    <RelativeLayout
+        android:layout_below="@id/view_bar"
+        android:id="@+id/rl_profile_photo"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_pf_photo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/profile_photo_round"
+            android:src="@drawable/profile_photo"/>
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_pf_photo"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/username"
+            android:textSize="25sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/tv_userid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_pf_photo"
+            android:layout_below="@id/tv_username"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/userid"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="欢迎："
-        android:textSize="20sp"
-        android:textColor="#000000"/>
-    <Button
-        android:id="@+id/bt_login"
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"/>
+        android:layout_below="@id/rl_profile_shape"
+        android:layout_marginTop="-45dp"
+        android:background="@drawable/profile_main_shape">
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/view_nav"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:text="About us"/>
+        <View
+            android:id="@+id/view_nav"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
 
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_profile_shape"
+        android:layout_below="@id/rl_profile_photo"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:background="@drawable/profile_view_round">
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_pay_order"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableTop="@drawable/ic_payment_black_24dp"-->
+            <!--android:text="Pay Order"-->
+            <!--android:textColor="#000000"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_paid_order"-->
+            <!--android:layout_toEndOf="@id/tv_pay_order"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableTop="@drawable/ic_my_order_black_24dp"-->
+            <!--android:text="Paid order"-->
+            <!--android:textColor="#000000"/>-->
+
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

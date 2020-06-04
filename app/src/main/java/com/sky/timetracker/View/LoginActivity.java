@@ -1,121 +1,89 @@
 package com.sky.timetracker.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.sky.timetracker.Constants;
+import com.sky.timetracker.IContract;
+import com.sky.timetracker.Presenter.PresenterLoginImpl;
 import com.sky.timetracker.R;
-import com.sky.timetracker.pojo.OnlineUser;
+import com.sky.timetracker.pojo.UserBean;
+import com.sky.timetracker.util.MyMD5Util;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.logging.LogRecord;
+public class LoginActivity extends AppCompatActivity implements IContract.IViewLogin {
 
-public class LoginActivity extends AppCompatActivity {
-
+    private Button mBtRegister;
     private Button mBtLogin;
-    private TextView mTvUserName;
-    private TextView mTvUserPassword;
-    private OnlineUser mUser;
-    private static Handler mHandler;
-    private static final int WHAT_LOADER_RESULT = 1;
+    private EditText mEtUid;
+    private EditText mEtUpwd;
 
-//    private static class Handler extends android.os.Handler{
-//        private static final int WHAT_LOADER_RESULT = 1;
-//
-//        @Override
-//        public void handleMessage(@NonNull Message msg) {
-//            switch (msg.what){
-//                case WHAT_LOADER_RESULT:
-//                    OnlineUser user = (OnlineUser) msg.obj;
-////                    Toast.makeText(LoginActivity.this,"登录成功 用户名：" + user.toString(),Toast.LENGTH_SHORT).show();
-//                    break;
-//            }
-//
-//        }
-//    }
-
-
-    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                switch(msg.what) {
-                    case WHAT_LOADER_RESULT:
-                        OnlineUser user = (OnlineUser) msg.obj;
-                        makeTost(user.toString());
-                        break;
-                }
-            }
-        };
+
         initView();
     }
 
     private void initView() {
+        mEtUid = findViewById(R.id.et_id);
+        mEtUpwd = findViewById(R.id.et_pwd);
         mBtLogin = findViewById(R.id.bt_login);
-        mTvUserName = findViewById(R.id.et_id);
-        mTvUserPassword = findViewById(R.id.et_pwd);
+        mBtRegister = findViewById(R.id.bt_register);
         mBtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        loadData();
-                    }
-                }).start();
 
-
+                String uId = mEtUid.getText().toString().trim();
+                String pwd = mEtUpwd.getText().toString().trim();
+                // 判断
+                if (!TextUtils.isEmpty(uId) && !TextUtils.isEmpty(pwd)) {
+                    String uPwd = MyMD5Util.encrypt(pwd);
+                    PresenterLoginImpl presenterLogin = new PresenterLoginImpl(LoginActivity.this);
+                    presenterLogin.login(uId,uPwd);
+                }
+            }
+        });
+        mBtRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void makeTost(String state) {
-        Toast.makeText(getApplicationContext(),state,Toast.LENGTH_SHORT).show();
-    }
-
-    private void loadData() {
-        try {
-            String parpreUrl = "http://47.101.190.152:8080/appServer/login?userName=" + mTvUserName.getText().toString().trim() + "&userPassword=" + mTvUserPassword.getText().toString().trim();
-            URL url = new URL(parpreUrl);
-            HttpURLConnection httpURLConnection  = (HttpURLConnection) url.openConnection();
-            int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode == 200){
-                httpURLConnection.setConnectTimeout(1000);
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-                String line;
-                while((line = bufferedReader.readLine()) != null) {
-                    Log.d("测试",line);
-                    Gson gson = new Gson();
-                    // obtainMessage 效率高一些 不需要new
-                    Message message = mHandler.obtainMessage();
-                    message.what = WHAT_LOADER_RESULT;
-                    message.obj = gson.fromJson(line, OnlineUser.class);
-                    mHandler.sendMessage(message);
-                }
-                bufferedReader.close();
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
+    @Override
+    public void saveUserData(String response) {
+        Gson gson = new Gson();
+        // 判断是否正确返回 密码用户是否存在
+        if (response.equals("\"null\"\n")) {
+            // 因为okHttp异步请求不再主线程 无法直接弹toast
+            // 用looper包一下
+            Looper.prepare();
+            Toast.makeText(getApplicationContext(),"Account information error",Toast.LENGTH_SHORT).show();
+            Looper.loop();
+        }else {
+            UserBean userBean = gson.fromJson(response, UserBean.class);
+            SharedPreferences sp = getSharedPreferences(Constants.SP_USER_DATA, MODE_PRIVATE);
+            SharedPreferences.Editor edit = sp.edit();
+            edit.putBoolean("loginStatus", true);
+            edit.putInt("uId",userBean.getuId());
+            edit.putString("uName",userBean.getuName());
+            edit.putString("uPwd",userBean.getuPwd());
+            edit.putString("imagePath",userBean.getImagePath());
+            edit.commit();
+            finish();
         }
     }
 }
