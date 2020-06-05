@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.sky.timetracker.View.Fragment.DataPageFragment;
+import com.sky.timetracker.View.Fragment.DataMainPageFragment;
 import com.sky.timetracker.View.Fragment.StartPageFragment;
 import com.sky.timetracker.View.Fragment.UserPageFragment;
 
@@ -19,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
     private BottomNavigationView mBottomNavigationView;
     private StartPageFragment mStartPageFragment;
-    private DataPageFragment mDataPageFragment;
     private UserPageFragment mUserPageFragment;
+    private DataMainPageFragment mDataMainPageFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initView() {
-
+        // 去除actionbar阴影
+        getSupportActionBar().setElevation(0);
         mBottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavigationClick navigationClick = new NavigationClick();
         mBottomNavigationView.setOnNavigationItemSelectedListener(navigationClick);
@@ -79,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                     getSupportActionBar().show();
                     getSupportActionBar().setTitle(R.string.app_data);
-                    if (mDataPageFragment == null){
-                        mDataPageFragment = new DataPageFragment();
-                        transaction.add(R.id.fl_content,mDataPageFragment);
-                        transaction.show(mDataPageFragment);
+                    if (mDataMainPageFragment == null){
+                        mDataMainPageFragment = new DataMainPageFragment();
+                        transaction.add(R.id.fl_content, mDataMainPageFragment);
+                        transaction.show(mDataMainPageFragment);
                         transaction.commit();
                     }else {
-                        transaction.show(mDataPageFragment);
+                        transaction.show(mDataMainPageFragment);
                         transaction.commit();
                     }
                     return true;
@@ -116,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         if (mStartPageFragment != null){
             transaction.hide(mStartPageFragment);
         }
-        if (mDataPageFragment != null){
-            transaction.hide(mDataPageFragment);
+        if (mDataMainPageFragment != null){
+            transaction.hide(mDataMainPageFragment);
         }
         if (mUserPageFragment != null){
             transaction.hide(mUserPageFragment);
