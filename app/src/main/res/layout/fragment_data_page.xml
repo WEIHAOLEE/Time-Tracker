@@ -5,10 +5,6 @@
     android:orientation="vertical">
 
 
-    <!--<ListView-->
-        <!--android:id="@+id/lv_data"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"></ListView>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"

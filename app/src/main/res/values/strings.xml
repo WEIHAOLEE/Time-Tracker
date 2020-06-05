@@ -10,4 +10,9 @@
     <string name="username">UserName</string>
     <string name="userid">UserID</string>
     <string name="user_info">User Information</string>
+
+    <string-array name="indicator_title">
+        <item>List Records</item>
+        <item>Chart Records</item>
+    </string-array>
 </resources>
