@@ -43,7 +43,10 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
     public void startTiming(Chronometer Timer,Context context) {
         mTimingStartTime = SystemClock.elapsedRealtime();
         mContext = context;
+        Timer.setOnChronometerTickListener(null);
         Timer.setBase(mTimingStartTime);
+        Timer.setCountDown(false);
+
 //        mTimer.setCountDown(true); 代表是倒计时还是正常计时, false就是正常计时, true计时倒计时.
 //        Timer.setFormat("计时：%s");
         Timer.start();
