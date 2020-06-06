@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.sky.timetracker.IContract;
 import com.sky.timetracker.Model.ModelImpl;
@@ -28,6 +29,7 @@ public class DataPageFragment extends Fragment implements IContract.IView {
     private View mView;
     private PresenterImpl presenter;
     private int mDataId;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     /**
      * Fragment调用show 和hide 时候会回调这个方法
@@ -45,15 +47,28 @@ public class DataPageFragment extends Fragment implements IContract.IView {
         }
     }
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_data_page, container, false);
 
+        initView();
         initPresenter();
         setRecycleview(mView);
         return mView;
 
+    }
+
+    private void initView() {
+        mSwipeRefreshLayout = mView.findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                setRecycleview(mView);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
 

@@ -1,9 +1,12 @@
 package com.sky.timetracker.View.adapter;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.sky.timetracker.View.Fragment.DataChartFragment;
 import com.sky.timetracker.View.Fragment.DataPageFragment;
@@ -16,6 +19,11 @@ public class DataViewPagerAdapter extends FragmentPagerAdapter {
 
     public DataViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
+    }
+
+    @Override
+    public int getCount() {
+        return 2;
     }
 
     @NonNull
@@ -37,7 +45,10 @@ public class DataViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public int getCount() {
-        return 2;
+    public int getItemPosition(@NonNull Object object) {
+        return super.getItemPosition(object);
     }
+
+
+
 }
