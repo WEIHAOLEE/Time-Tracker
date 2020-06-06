@@ -1,7 +1,9 @@
 package com.sky.timetracker.View.Fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.text.InputType;
@@ -41,6 +43,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
     private boolean isTimming;
     private EditText mEditText;
     private String mMissionName;
+    private String mMissionType;
 
     @Nullable
     @Override
@@ -132,18 +135,22 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
     @Override
     public void showDialog(int time, int date) {
         // 在其他fragment上不会显示 其实这个应该放到activity下
-        final EditText editText1 = new EditText(view.getContext());
+        LayoutInflater factory = LayoutInflater.from(view.getContext());
+        final  View DialogView = factory.inflate(R.layout.item_dialog_mission, null);
+        final EditText etMissionName = DialogView.findViewById(R.id.et_mission_name);
+        final EditText etMissionType = DialogView.findViewById(R.id.et_mission_type);
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle("请输入任务名称")
-                .setView(editText1)
+        builder.setTitle("请输入任务名称以及类型")
+                .setView(DialogView)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            mMissionName = editText1.getText().toString();
-                            iTimer.setData(mMissionName);
-                            Intent intent = new Intent(view.getContext(), ShareActivity.class);
-                            startActivity(intent);
+                            mMissionName = etMissionName.getText().toString();
+                            mMissionType = etMissionType.getText().toString();
+                            iTimer.setData(mMissionName,mMissionType);
+
+
                             // p调用v方法 要数据  v调用p方法传数据?
                         }catch (Exception e){
                             e.printStackTrace();
@@ -162,5 +169,21 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
     @Override
     public void showToast(String content) {
         Toast.makeText(view.getContext(),content,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startActivity(Class<?> cls, String date, String time, String type) {
+        Intent intent = new Intent(view.getContext(), cls);
+        SharedPreferences sp = view.getContext().getSharedPreferences("timer_count", Context.MODE_PRIVATE);
+        int count = sp.getInt("count", 0);
+        count = count + 1;
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putInt("count",count);
+        edit.commit();
+        intent.putExtra("count",String.valueOf(count));
+        intent.putExtra("date",date);
+        intent.putExtra("time",time);
+        intent.putExtra("type",type);
+        startActivity(intent);
     }
 }

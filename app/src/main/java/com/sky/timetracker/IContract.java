@@ -34,7 +34,7 @@ public interface IContract {
          * 输入data给M层
          * @param missionName insert 的 任务名称
          */
-        void setData(String missionName);
+        void setData(String missionName, String Type);
 
     }
 
@@ -60,6 +60,7 @@ public interface IContract {
 
             void showToast(String content);
 
+            void startActivity(Class<?> cls, String date, String time, String type);
 //            void hideDialog();
         }
     }
