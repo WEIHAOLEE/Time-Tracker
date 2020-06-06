@@ -94,6 +94,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                                         mTime = 60000 * Integer.parseInt(stringTime);
                                         if (mTime != 0){
                                             iTimer.startCountDown(mTimer,mTime,view.getContext());
+                                            Constants.TIMER_STATE = "WORKING";
                                         }
 
                                     }catch (Exception e){
@@ -102,7 +103,6 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                                 }
                             })
                             .show();
-                    Constants.TIMER_STATE = "WORKING";
 
                     break;
             }
