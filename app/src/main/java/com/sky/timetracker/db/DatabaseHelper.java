@@ -1,5 +1,6 @@
 package com.sky.timetracker.db;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,6 +23,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // 升级更新数据库
+        switch (oldVersion){
+            case 2:
+                String sql = "create table " + Constants.TABLE_NAME_RECORD_TYPE + "(type_id integer PRIMARY KEY AUTOINCREMENT, type_name varchar)";
+                db.execSQL(sql);
+                ContentValues values = new ContentValues();
+                values.put("type_name","学习");
+                db.insert(Constants.TABLE_NAME_RECORD_TYPE,null,values);
+                break;
+            case 3:
+                break;
+        }
 
     }
 }

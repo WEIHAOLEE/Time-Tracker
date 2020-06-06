@@ -1,6 +1,7 @@
 package com.sky.timetracker.View.Fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.text.InputType;
@@ -24,6 +25,7 @@ import com.sky.timetracker.Model.ModelImpl;
 import com.sky.timetracker.Presenter.ITimer;
 import com.sky.timetracker.Presenter.TimeImpl;
 import com.sky.timetracker.R;
+import com.sky.timetracker.View.ShareActivity;
 
 import java.util.Date;
 
@@ -140,6 +142,8 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                         try {
                             mMissionName = editText1.getText().toString();
                             iTimer.setData(mMissionName);
+                            Intent intent = new Intent(view.getContext(), ShareActivity.class);
+                            startActivity(intent);
                             // p调用v方法 要数据  v调用p方法传数据?
                         }catch (Exception e){
                             e.printStackTrace();
@@ -149,6 +153,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
                 })
                 .show();
         Constants.TIMER_STATE = "NO_WORK";
+
     }
 
     /**
