@@ -3,6 +3,7 @@ package com.sky.timetracker.View.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 
+import java.lang.reflect.Field;
+
 public class DataMainPageFragment extends Fragment {
 
     private View mView;
@@ -29,7 +32,21 @@ public class DataMainPageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_main_data_page, container, false);
         initView();
+        setOverflowShowingAlways();
         return mView;
+    }
+
+    private void setOverflowShowingAlways() {
+        // 我也没看懂是干啥的
+        try {
+            ViewConfiguration config = ViewConfiguration.get(getParentFragment().getActivity());
+            Field menuKeyField = ViewConfiguration.class
+                    .getDeclaredField("sHasPermanentMenuKey");
+            menuKeyField.setAccessible(true);
+            menuKeyField.setBoolean(config, false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initView() {
