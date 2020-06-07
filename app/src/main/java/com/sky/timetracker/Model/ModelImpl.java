@@ -27,9 +27,9 @@ public class ModelImpl implements IContract.IModel {
     }
 
     @Override
-    public void insertData(Context context, String missionName, int time, int date) {
+    public void insertData(Context context, String missionName, int time, int date, String type) {
         dao = new DaoImpl(context);
-        dao.insert(missionName,time,date);
+        dao.insert(missionName,time,date,type);
     }
 
     @Override

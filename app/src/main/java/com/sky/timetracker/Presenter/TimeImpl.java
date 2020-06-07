@@ -116,14 +116,18 @@ public class TimeImpl implements ITimer, IContract.IPresenterTimer {
     public void setData(String missionName,String Type) {
         // 传给m层
         if (mCountDownTime != 0){
-            model.insertData(mContext,missionName,mCountDownTime,mIntDate);
+            model.insertData(mContext,missionName,mCountDownTime,mIntDate,Type);
             String time = (mCountDownTime / 60000) + "分钟";
             String prepareDate = String.valueOf(mIntDate);
             String date = prepareDate.substring(0,4) + "年" + prepareDate.substring(4,6) + "月" + prepareDate.substring(6,8) + "日";
             view.startActivity(ShareActivity.class,date,time,Type);
             mCountDownTime = 0;
         }else if (mTimingTime != 0){
-            model.insertData(mContext,missionName,mTimingTime,mIntDate);
+            model.insertData(mContext,missionName,mTimingTime,mIntDate,Type);
+            String time = (mTimingTime/ 60000) + "分钟";
+            String prepareDate = String.valueOf(mIntDate);
+            String date = prepareDate.substring(0,4) + "年" + prepareDate.substring(4,6) + "月" + prepareDate.substring(6,8) + "日";
+            view.startActivity(ShareActivity.class,date,time,Type);
             mTimingTime = 0;
         }
     }

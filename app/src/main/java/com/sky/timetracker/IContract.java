@@ -14,7 +14,7 @@ public interface IContract {
         // 使用Dao查询datalist
         List<DataBean> queryDataList(Context context);
         // 用Dao插入数据
-        void insertData(Context context, String missionName, int time, int date);
+        void insertData(Context context, String missionName, int time, int date, String type);
         // 根据删除data数据
         void deleteData(Context context,int id);
     }

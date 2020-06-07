@@ -24,12 +24,13 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public void insert(String name, int time, int date) {
+    public void insert(String name, int time, int date, String type) {
         SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("record_name",name);
         values.put("record_time",time);
         values.put("record_date",date);
+        values.put("record_type",type);
         db.insert(Constants.TABLE_NAME_RECORD,null,values);
         db.close();
     }

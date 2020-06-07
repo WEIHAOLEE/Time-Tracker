@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Dao {
     // 增
-    void insert(String name, int time, int date);
+    void insert(String name, int time, int date, String type);
     // 改
     void update();
     // 删
