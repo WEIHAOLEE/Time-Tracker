@@ -1,5 +1,7 @@
 package com.sky.timetracker.Model.DAO;
 
+import com.github.mikephil.charting.data.PieEntry;
+
 import java.util.List;
 
 public interface Dao {
@@ -13,4 +15,10 @@ public interface Dao {
     void query();
 
     List dataList();
+
+    List<PieEntry> pieDataList();
+
+    String queryType(String type);
+
+    void insertType(String type);
 }

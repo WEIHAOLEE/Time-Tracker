@@ -48,6 +48,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String sqlAlter2 = "alter table " + Constants.TABLE_NAME_RECORD + " add record_type varchar";
                 db.execSQL(sqlAlter2);
                 break;
+            case 4:
+                String sql2 = "create table " + Constants.TABLE_NAME_RECORD_TYPE + "(type_id integer PRIMARY KEY AUTOINCREMENT, type_name varchar)";
+                db.execSQL(sql2);
+
         }
 
     }

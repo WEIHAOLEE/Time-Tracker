@@ -1,6 +1,7 @@
 package com.sky.timetracker;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
@@ -26,7 +27,8 @@ public class ExampleInstrumentedTest {
 
         DaoImpl dao = new DaoImpl(context);
 
-        dao.query();
+        boolean b = dao.queryType("学习");
+        Log.d("测试", String.valueOf(b));
     }
     @Test
     public void useAppContext() {

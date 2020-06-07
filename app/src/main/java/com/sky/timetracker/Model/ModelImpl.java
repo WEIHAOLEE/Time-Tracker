@@ -1,7 +1,9 @@
 package com.sky.timetracker.Model;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.github.mikephil.charting.data.PieEntry;
 import com.sky.timetracker.IContract;
 import com.sky.timetracker.Model.DAO.DaoImpl;
 import com.sky.timetracker.pojo.DataBean;
@@ -30,11 +32,23 @@ public class ModelImpl implements IContract.IModel {
     public void insertData(Context context, String missionName, int time, int date, String type) {
         dao = new DaoImpl(context);
         dao.insert(missionName,time,date,type);
+        String s = dao.queryType(type);
+        if (s == null){
+            Log.d("查询", "是空的");
+            dao.insertType(type);
+        }
     }
 
     @Override
     public void deleteData(Context context,int id) {
         dao = new DaoImpl(context);
         dao.delete(id);
+    }
+
+    @Override
+    public List<com.github.mikephil.charting.data.PieEntry> queryPieChart(Context context) {
+        DaoImpl dao = new DaoImpl(context);
+        List<PieEntry> pieEntryList = dao.pieDataList();
+        return pieEntryList;
     }
 }

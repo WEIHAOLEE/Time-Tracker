@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.github.mikephil.charting.data.PieEntry;
 import com.sky.timetracker.Constants;
 import com.sky.timetracker.db.DatabaseHelper;
 import com.sky.timetracker.pojo.DataBean;
+import com.sky.timetracker.pojo.TypeBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,5 +90,61 @@ public class DaoImpl implements Dao {
         db.close();
 
         return dataBeanList;
+    }
+
+    @Override
+    public List<com.github.mikephil.charting.data.PieEntry> pieDataList() {
+        List<PieEntry> pieEntryList = null;
+        pieEntryList = new ArrayList<>();
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        Cursor totalTimeCursor = db.query(Constants.TABLE_NAME_RECORD, null, null, null, null, null, null);
+        float totalTime = 0.0f;
+        while (totalTimeCursor.moveToNext()) {
+            float time = totalTimeCursor.getInt(2) / 60000;
+            totalTime = totalTime + time;
+        }
+
+        Cursor typeCursor = db.query(Constants.TABLE_NAME_RECORD_TYPE, null, null, null, null, null, null);
+        while (typeCursor.moveToNext()) {
+            String type = typeCursor.getString(1);
+            Cursor typeTimeCursor = db.query(Constants.TABLE_NAME_RECORD, null, "record_type = ?", new String[]{type}, null, null, null);
+            float typeTotalTime = 0.0f;
+            while (typeTimeCursor.moveToNext()) {
+                float time = typeTimeCursor.getInt(2) / 60000;
+                typeTotalTime = typeTotalTime + time;
+            }
+
+            float typeRate = (typeTotalTime / totalTime) * 100;
+            com.github.mikephil.charting.data.PieEntry pieEntry = new com.github.mikephil.charting.data.PieEntry(typeRate, type);
+//            PieEntry pieEntry = new PieEntry(typeRate, type);
+            pieEntryList.add(pieEntry);
+            typeTimeCursor.close();
+        }
+        totalTimeCursor.close();
+        typeCursor.close();
+        db.close();
+        return pieEntryList;
+    }
+
+    @Override
+    public String queryType(String type) {
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        Cursor cursor = db.query(Constants.TABLE_NAME_RECORD_TYPE, null, "type_name = ?", new String[]{type}, null, null, null);
+        while (cursor.moveToNext()) {
+            String string = cursor.getString(1);
+            return string;
+        }
+        cursor.close();
+        db.close();
+        return null;
+    }
+
+    @Override
+    public void insertType(String type) {
+        SQLiteDatabase db = mDatabaseHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("type_name", type);
+        db.insert(Constants.TABLE_NAME_RECORD_TYPE,null,values);
+        db.close();
     }
 }
