@@ -12,4 +12,5 @@ Time Track Android Apps Repository For Study
 **Developing**
 
 5. Save records in the cloud (Developing...)
-6. Chat Room (Maybe..)
+6. Share the record to WeChat / QQ (Developing...)
+7. Chat Room (Maybe..)
