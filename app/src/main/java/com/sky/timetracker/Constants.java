@@ -13,4 +13,5 @@ public class Constants {
     public static String IMAGE_PATH = "";
     public static final String SP_USER_DATA = "userData";
     public static final String SERVER_BASE_URL = "http://47.101.190.152:8080";
+    public static final String APP_ID = "wx9f8d0e41f2b99f2b";
 }

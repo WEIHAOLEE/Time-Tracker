@@ -15,4 +15,5 @@
         <item>List Records</item>
         <item>Chart Records</item>
     </string-array>
+    <string name="share">share</string>
 </resources>

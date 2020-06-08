@@ -16,6 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
 }
 
 dependencies {
@@ -36,5 +41,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation("com.squareup.okhttp3:okhttp:4.7.2")
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 
 }

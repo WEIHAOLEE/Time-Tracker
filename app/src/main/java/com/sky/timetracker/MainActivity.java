@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,6 +18,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sky.timetracker.View.Fragment.DataMainPageFragment;
 import com.sky.timetracker.View.Fragment.StartPageFragment;
 import com.sky.timetracker.View.Fragment.UserPageFragment;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private UserPageFragment mUserPageFragment;
     private DataMainPageFragment mDataMainPageFragment;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         // 动态设置 actionbar 标题 逻辑不完美
         getSupportActionBar().setTitle(R.string.app_start);
         initView();
@@ -125,4 +135,9 @@ public class MainActivity extends AppCompatActivity {
             transaction.hide(mUserPageFragment);
         }
     }
+
+
+
+
+
 }
