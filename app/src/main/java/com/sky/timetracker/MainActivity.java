@@ -5,22 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sky.timetracker.View.Fragment.DataMainPageFragment;
 import com.sky.timetracker.View.Fragment.StartPageFragment;
 import com.sky.timetracker.View.Fragment.UserPageFragment;
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private StartPageFragment mStartPageFragment;
     private UserPageFragment mUserPageFragment;
     private DataMainPageFragment mDataMainPageFragment;
-
+    private View viewInflate;
 
 
     @Override
@@ -41,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.app_start);
         initView();
         setDefaultFragment();
+        initInflate();
+    }
+
+    private void initInflate() {
+        viewInflate = getLayoutInflater().inflate(R.layout.activity_main, null);
     }
 
     // 设置默认Fragment
@@ -76,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(R.string.app_start);
                     if (mStartPageFragment == null){
                         mStartPageFragment = new StartPageFragment();
+                        transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
                         transaction.add(R.id.fl_content,mStartPageFragment);
                         transaction.show(mStartPageFragment);
                         transaction.commit();
                     }else {
+                        transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
                         transaction.show(mStartPageFragment);
                         transaction.commit();
                     }
@@ -93,10 +93,12 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setTitle(R.string.app_data);
                     if (mDataMainPageFragment == null){
                         mDataMainPageFragment = new DataMainPageFragment();
+                        transaction.setCustomAnimations(R.anim.anim_fragment_move_from_top,R.anim.anim_fragment_move_to_top);
                         transaction.add(R.id.fl_content, mDataMainPageFragment);
                         transaction.show(mDataMainPageFragment);
                         transaction.commit();
                     }else {
+                        transaction.setCustomAnimations(R.anim.anim_fragment_move_from_top,R.anim.anim_fragment_move_to_top);
                         transaction.show(mDataMainPageFragment);
                         transaction.commit();
                     }
@@ -106,14 +108,28 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"学习不要分心哦～",Toast.LENGTH_SHORT).show();
                         break;
                     }
+
+//                    try {
+//                        // 去除隐藏actionbar动画
+//                        getSupportActionBar().getClass().getDeclaredMethod("setShowHideAnimationEnabled",
+//                                boolean.class).invoke(getSupportActionBar(),false);
+//                    } catch (IllegalAccessException e) {
+//                        e.printStackTrace();
+//                    } catch (InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    } catch (NoSuchMethodException e) {
+//                        e.printStackTrace();
+//                    }
                     getSupportActionBar().hide();
 //                    getSupportActionBar().setTitle(R.string.app_user);
                     if (mUserPageFragment == null){
                         mUserPageFragment = new UserPageFragment();
+                        transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
                         transaction.add(R.id.fl_content,mUserPageFragment);
                         transaction.show(mUserPageFragment);
                         transaction.commit();
                     }else {
+                        transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
                         transaction.show(mUserPageFragment);
                         transaction.commit();
                     }
@@ -126,12 +142,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideFragment(FragmentTransaction transaction){
         if (mStartPageFragment != null){
+//            transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
             transaction.hide(mStartPageFragment);
         }
         if (mDataMainPageFragment != null){
+            transaction.setCustomAnimations(R.anim.anim_fragment_move_from_top,R.anim.anim_fragment_move_to_top);
             transaction.hide(mDataMainPageFragment);
+            transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
         }
         if (mUserPageFragment != null){
+//            transaction.setCustomAnimations(R.anim.anim_fragment_open,R.anim.anim_fragment_close);
             transaction.hide(mUserPageFragment);
         }
     }
