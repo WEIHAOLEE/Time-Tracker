@@ -3,7 +3,7 @@
     package="com.sky.timetracker">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.ShareActivity"></activity>
+        <activity android:name=".View.BackUpActivity"></activity>
+        <activity android:name=".View.ShareActivity" />
         <activity android:name=".View.RegisterActivity" />
         <activity android:name=".View.LoginActivity" />
         <activity android:name=".View.ProfileActivity" />

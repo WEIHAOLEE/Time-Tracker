@@ -83,6 +83,7 @@ public class DaoImpl implements Dao {
                 String prepareDate = String.valueOf(cursor.getInt(3));
                 String date = prepareDate.substring(0,4) + "年" + prepareDate.substring(4,6) + "月" + prepareDate.substring(6,8) + "日";
                 data.setDate(date);
+                data.setType(cursor.getString(4));
                 dataBeanList.add(data);
 //            }
         }

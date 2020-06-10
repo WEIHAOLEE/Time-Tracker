@@ -75,6 +75,7 @@ public class ShareActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+//                    getExternalFilesDir()
 //                    File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 //                    ViewUtils.saveView(ShareActivity.this,mView,externalFilesDir +"/" + count + ".png");
                     Bitmap bitmap = ViewUtils.viewConversionBitmap(mView);

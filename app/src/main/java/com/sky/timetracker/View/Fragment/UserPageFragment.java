@@ -1,6 +1,8 @@
 package com.sky.timetracker.View.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.sky.timetracker.Constants;
 import com.sky.timetracker.R;
+import com.sky.timetracker.View.BackUpActivity;
 import com.sky.timetracker.View.LoginActivity;
 import com.sky.timetracker.View.ProfileActivity;
 import com.sky.timetracker.util.CheckLoginStatus;
@@ -31,6 +34,8 @@ public class UserPageFragment extends Fragment {
     private TextView mTvAbout;
     private TextView mTvUserId;
     private TextView mTvUsername;
+    private TextView mTvCountValue;
+    private Button mBtBackUp;
 
     @Nullable
     @Override
@@ -42,6 +47,13 @@ public class UserPageFragment extends Fragment {
 
     }
 
+
+    private void initData() {
+        SharedPreferences sp = view.getContext().getSharedPreferences("timer_count", Context.MODE_PRIVATE);
+        String count = String.valueOf(sp.getInt("count", 0));
+        mTvCountValue.setText(count);
+    }
+
     private void initView() {
         mIvPhoto = view.findViewById(R.id.iv_pf_photo);
         mIvPhoto.setOnClickListener(profileOnClickListener);
@@ -50,6 +62,15 @@ public class UserPageFragment extends Fragment {
         mTvUserId = view.findViewById(R.id.tv_userid);
         mTvUserId.setOnClickListener(profileOnClickListener);
         mTvAbout = view.findViewById(R.id.tv_about);
+        mTvCountValue = view.findViewById(R.id.tv_count_value);
+        mBtBackUp = view.findViewById(R.id.bt_backup);
+        mBtBackUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), BackUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private View.OnClickListener profileOnClickListener = new View.OnClickListener() {
@@ -86,6 +107,8 @@ public class UserPageFragment extends Fragment {
             mTvUsername.setText(Constants.USER_NAME);
             Glide.with(view).load(Constants.IMAGE_PATH).into(mIvPhoto);
         }
+
+        initData();
         super.onResume();
     }
 }

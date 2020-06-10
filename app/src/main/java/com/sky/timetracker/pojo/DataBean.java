@@ -5,6 +5,7 @@ public class DataBean {
     private int id;
     private String date;
     private String time;
+    private String type;
 
     @Override
     public String toString() {
@@ -13,6 +14,7 @@ public class DataBean {
                 ", id=" + id +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 
@@ -48,11 +50,20 @@ public class DataBean {
         this.time = time;
     }
 
-    public DataBean(String name, int id, String date, String time) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public DataBean(String name, int id, String date, String time, String type) {
         this.name = name;
         this.id = id;
         this.date = date;
         this.time = time;
+        this.type = type;
     }
 
     public DataBean() {

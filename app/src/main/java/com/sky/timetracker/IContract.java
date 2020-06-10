@@ -20,6 +20,7 @@ public interface IContract {
         void deleteData(Context context,int id);
 
         List<com.github.mikephil.charting.data.PieEntry> queryPieChart(Context context);
+
     }
 
     interface IPresenter{
@@ -32,6 +33,11 @@ public interface IContract {
 
     }
 
+    interface IPresenterBackUp{
+        void exportData(Context context);
+
+        void importData(Context context);
+    }
     interface IPresenterTimer{
         /**
          * 输入data给M层
@@ -82,5 +88,9 @@ public interface IContract {
 
     interface IViewLogin{
         void saveUserData(String response);
+    }
+
+    interface IViewBackUp{
+        void makeToast(String content);
     }
 }

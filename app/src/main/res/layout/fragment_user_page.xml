@@ -59,6 +59,19 @@
         android:layout_marginTop="-45dp"
         android:background="@drawable/profile_main_shape">
 
+        <Button
+            android:id="@+id/bt_backup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="备份相关"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:layout_above="@id/tv_about"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:background="@drawable/boarding_book_round"/>
         <TextView
             android:id="@+id/tv_about"
             android:layout_width="wrap_content"
@@ -93,6 +106,25 @@
         android:background="@drawable/profile_view_round">
 
 
+        <TextView
+            android:id="@+id/tv_count_value"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_below="@id/tv_count_value"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="记录次数"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:gravity="center"/>
         <!--<TextView-->
             <!--android:id="@+id/tv_pay_order"-->
             <!--android:layout_width="wrap_content"-->
