@@ -37,6 +37,15 @@ public class UserPageFragment extends Fragment {
     private TextView mTvCountValue;
     private Button mBtBackUp;
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden){
+            // 隐藏
+        }else {
+            initData();
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

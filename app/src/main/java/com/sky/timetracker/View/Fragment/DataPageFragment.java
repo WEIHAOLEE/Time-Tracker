@@ -1,5 +1,7 @@
 package com.sky.timetracker.View.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,6 +98,12 @@ public class DataPageFragment extends Fragment implements IContract.IView {
 
                     adapter.notifyItemRemoved(position);
                     adapter.notifyItemRangeChanged(position,mDataList.size());
+                    SharedPreferences sp = view.getContext().getSharedPreferences("timer_count", Context.MODE_PRIVATE);
+                    int count = sp.getInt("count",0);
+                    count = count - 1;
+                    SharedPreferences.Editor edit = sp.edit();
+                    edit.putInt("count", count);
+                    edit.commit();
                 }
             }
         });
