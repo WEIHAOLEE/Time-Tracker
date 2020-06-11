@@ -88,6 +88,7 @@ public class StartPageFragment extends Fragment implements IContract.IView.IView
 
                     editText = new EditText(view.getContext());
                     editText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    editText.setHint("单位：分钟");
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     builder.setTitle("请输入倒计时长")
                             .setView(editText)
