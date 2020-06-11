@@ -7,21 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?android:attr/actionBarSize">
 
-    <View
-        android:id="@+id/view_bar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#FFFFFF" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_1"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#FFFFFF"
-        app:title="Open Source"
-        app:titleTextColor="#000000"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent">
@@ -37,19 +23,19 @@
                     android:id="@+id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ImmersionBar"
+                    android:text="MagicIndicator"
                     android:textSize="18sp"/>
                 <TextView
                     android:layout_below="@id/tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.0.0"
+                    android:text="1.5.0"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="gyf-devr"
+                    android:text="hackware1993"
                     android:layout_alignParentEnd="true"
                     android:textSize="18sp"/>
             </RelativeLayout>
@@ -225,6 +211,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hdodenhof"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/tv_name8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wechat-sdk-android"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_below="@id/tv_name8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Latest Version"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tencent"
                     android:layout_alignParentEnd="true"
                     android:textSize="18sp"/>
             </RelativeLayout>

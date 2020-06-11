@@ -15,7 +15,7 @@
         <item>List Records</item>
         <item>Chart Records</item>
     </string-array>
-    <string name="share">share</string>
+    <string name="share_wx_pyq">share to friends circle</string>
     <string name="backup_content">The backup files will be stored as JSON in (/storage/emulated/0/Android/data/com.sky.timetracker/files/Download) In the. Also, if you need to use backup files to restore records, please also put the backup files in the same directory.</string>
     <string name="backup_attention">Attention Please ! Your backup files may be removed as the software is uninstalled, the cache is cleaned, etc., so please take good care of your backup files.</string>
     <string name="Export">Export</string>

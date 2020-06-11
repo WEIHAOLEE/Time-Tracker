@@ -9,7 +9,7 @@
     <string name="username">用户名</string>
     <string name="userid">用户ID</string>
     <string name="user_info">用户信息</string>
-    <string name="share">分享</string>
+    <string name="share_wx_pyq">分享至朋友圈</string>
     <string name="backup_content">"备份文件将会以json形式储存在（/storage/emulated/0/Android/data/com.sky.timetracker/files/Download)中。同时如果您需要使用备份文件恢复记录，也请您将备份文件放置同目录。 "</string>
     <string name="backup_attention">请注意，您的备份文件可能会随着软件的卸载、清理缓存等原因被清除，因此请您妥善保管好您的备份文件。</string>
     <string name="Export">导出</string>

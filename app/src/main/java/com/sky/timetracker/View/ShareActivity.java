@@ -13,10 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sky.timetracker.Constants;
 import com.sky.timetracker.R;
 import com.sky.timetracker.util.BitmapToByteArray;
+import com.sky.timetracker.util.CheckAppAvilible;
 import com.sky.timetracker.util.ViewUtils;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
@@ -74,40 +76,45 @@ public class ShareActivity extends AppCompatActivity {
         mBtShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+                // 检测微信是否存在
+                if (CheckAppAvilible.isWeixinAvilible(getApplicationContext())) {
+                    try {
 //                    getExternalFilesDir()
 //                    File externalFilesDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 //                    ViewUtils.saveView(ShareActivity.this,mView,externalFilesDir +"/" + count + ".png");
-                    Bitmap bitmap = ViewUtils.viewConversionBitmap(mView);
+                        Bitmap bitmap = ViewUtils.viewConversionBitmap(mView);
 
-                    //初始化 WXImageObject 和 WXMediaMessage 对象
-                    WXImageObject imgObj = new WXImageObject(bitmap);
-                    WXMediaMessage msg = new WXMediaMessage();
-                    msg.mediaObject = imgObj;
-                    // 设置缩略图
-                    Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 10, 10, true);
-                    bitmap.recycle();
-                    msg.thumbData = BitmapToByteArray.toByteArray(thumbBmp);
+                        //初始化 WXImageObject 和 WXMediaMessage 对象
+                        WXImageObject imgObj = new WXImageObject(bitmap);
+                        WXMediaMessage msg = new WXMediaMessage();
+                        msg.mediaObject = imgObj;
+                        // 设置缩略图
+                        Bitmap thumbBmp = Bitmap.createScaledBitmap(bitmap, 10, 10, true);
+                        bitmap.recycle();
+                        msg.thumbData = BitmapToByteArray.toByteArray(thumbBmp);
 
-                    //构造一个Req
-                    SendMessageToWX.Req req = new SendMessageToWX.Req();
-                    req.transaction = buildTransaction("img");
-                    req.message = msg;
-                    /**
-                     * 分享到对话:
-                     * SendMessageToWX.Req.WXSceneSession
-                     * 分享到朋友圈:
-                     * SendMessageToWX.Req.WXSceneTimeline ;
-                     * 分享到收藏:
-                     * SendMessageToWX.Req.WXSceneFavorite
-                     * transaction	String	对应该请求的事务 ID，通常由 Req 发起，回复 Resp 时应填入对应事务 ID
-                     */
-                    req.scene = SendMessageToWX.Req.WXSceneTimeline;
-                    req.userOpenId = "fuck the document";
-                    //调用api接口，发送数据到微信
-                    api.sendReq(req);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                        //构造一个Req
+                        SendMessageToWX.Req req = new SendMessageToWX.Req();
+                        req.transaction = buildTransaction("img");
+                        req.message = msg;
+                        /**
+                         * 分享到对话:
+                         * SendMessageToWX.Req.WXSceneSession
+                         * 分享到朋友圈:
+                         * SendMessageToWX.Req.WXSceneTimeline ;
+                         * 分享到收藏:
+                         * SendMessageToWX.Req.WXSceneFavorite
+                         * transaction	String	对应该请求的事务 ID，通常由 Req 发起，回复 Resp 时应填入对应事务 ID
+                         */
+                        req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                        req.userOpenId = "fuck the document";
+                        //调用api接口，发送数据到微信
+                        api.sendReq(req);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(),"您没有安装微信",Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.sky.timetracker.Constants;
 import com.sky.timetracker.R;
+import com.sky.timetracker.View.AboutActivity;
 import com.sky.timetracker.View.BackUpActivity;
 import com.sky.timetracker.View.LoginActivity;
 import com.sky.timetracker.View.ProfileActivity;
@@ -71,6 +72,13 @@ public class UserPageFragment extends Fragment {
         mTvUserId = view.findViewById(R.id.tv_userid);
         mTvUserId.setOnClickListener(profileOnClickListener);
         mTvAbout = view.findViewById(R.id.tv_about);
+        mTvAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), AboutActivity.class);
+                startActivity(intent);
+            }
+        });
         mTvCountValue = view.findViewById(R.id.tv_count_value);
         mBtBackUp = view.findViewById(R.id.bt_backup);
         mBtBackUp.setOnClickListener(new View.OnClickListener() {
