@@ -156,8 +156,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (Constants.TIMER_STATE.equals("WORKING")){
+            Toast.makeText(getApplicationContext(),"您正在计时中不要中途放弃哦，程序将会默认在后台运行",Toast.LENGTH_SHORT).show();
+            moveTaskToBack(true);
+        }else {
+            super.onBackPressed();
+        }
 
-
-
-
+    }
 }
