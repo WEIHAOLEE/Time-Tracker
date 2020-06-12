@@ -8,9 +8,10 @@ Time Track Android Apps Repository For Study
 2. History timed task list
 3. Chart form statistics (For PieChart)
 4. Account system 
+5. Share the record to WeChat
 
 **Developing**
 
-5. Save records in the cloud (Developing...)
-6. Share the record to WeChat / QQ (Developing...)
-7. Chat Room (Maybe..)
+6. Save records in the cloud (Developing...)
+7. Share the record to WeChat / QQ (Developing...)
+8. Chat Room (Maybe..)
